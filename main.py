@@ -15,12 +15,12 @@ reddit = praw.Reddit(client_id='L92JRMl9lgC4sA',
 
 subreddit = reddit.subreddit('pics')
 
-hot_eyebleach = subreddit.hot(limit=50)
+hot_posts = subreddit.hot(limit=1)
 submissionUrls = dict()
 
 file = open("text.txt", "w")
 submissions = list()
-for submission in hot_eyebleach:
+for submission in hot_posts:
     if not submission.stickied:
         print(submission.url)
         submissionUrls[str(submission)] = submission.url
@@ -89,9 +89,9 @@ for key in submissionUrls:
 
     for line in images:
         if "\"class\":" in line:
-            line=line.replace(",","")
-            line=line.replace("\"class\": \"", "")
-            line=line.replace("\"", "")
+            line = line.replace(",","")
+            line = line.replace("\"class\": \"", "")
+            line = line.replace("\"", "")
             line = line.strip()
             listOfClasses.append(line)
             #print(line)
