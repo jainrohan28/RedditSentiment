@@ -13,6 +13,7 @@ hot_eyebleach = subreddit.hot(limit=4)
 file = open("text.txt", "w")
 for submission in hot_eyebleach:
     if not submission.stickied:
+        print(submission.url)
         file.write(str(submission) + "\n")
         print("title: ", submission.title)
 
