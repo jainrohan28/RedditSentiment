@@ -17,7 +17,7 @@ reddit = praw.Reddit(client_id='L92JRMl9lgC4sA',
 
 subreddit = reddit.subreddit('pics')
 
-hot_posts = subreddit.hot(limit=3)
+hot_posts = subreddit.hot(limit=)
 submissionUrls = dict()
 
 file = open("text.txt", "w")
@@ -84,7 +84,7 @@ objectSent = dict()
 objectOccur = dict()
 objectIDs = dict()
 imageObjects = dict()
-visual_recognition = VisualRecognitionV3('2016-05-20', api_key='ccc5c78d342ad2426470bfe29416b8bdc7e655e5')
+visual_recognition = VisualRecognitionV3('2016-05-20', api_key='8d7aced8efa9ce11cca985d203dce5989cc20148')
 for key in submissionUrls:
     hashmap = dict()
     listOfClasses = list()
@@ -119,44 +119,44 @@ for key in objectSent:
         print("key: ", key, objectSent[key]/objectOccur[key])
 
 # graph input x into x and y into y based on collected data
-x = ('1', '2', '3')
-y = (1000, 2000, 3000)
-y_pos = np.arange(len(x))
-
-plt.bar(y_pos, y)
-plt.show()
+# x = ('1', '2', '3')
+# y = (1000, 2000, 3000)
+# y_pos = np.arange(len(x))
+#
+# plt.bar(y_pos, y)
+# plt.show()
 
 # Suggestion Area
-print("Please enter image url:")
-marketingImageUrl = input()
-wholejson = (visual_recognition.classify(images_url=marketingImageUrl))
-images = (json.dumps(wholejson['images'], indent=2)).splitlines()
-listOfClasses = list()
-for line in images:
-    if "\"class\":" in line:
-        line = line.replace(",", "")
-        line = line.replace("\"class\": \"", "")
-        line = line.replace("\"", "")
-        line = line.strip()
-        listOfClasses.append(line)
-
-maxVal=0
-appearedIn = list()
-highest = ""
-for classs in listOfClasses:
-    if classs in objectOccur:
-        if objectSent[classs] > maxVal:
-            maxVal = objectSent[classs]
-            highest = classs
-
-appearedIn = objectIDs[highest]
-
-maxVal = 0
-highest = ""
-for key in appearedIn:
-    if sentimentComments[key] > maxVal:
-        maxVal = sentimentComments[key]
-        highest = key
-
-for key in imageObjects[highest]:
-    print("You should add " + key)
+# print("Please enter image url:")
+# marketingImageUrl = input()
+# wholejson = (visual_recognition.classify(images_url=marketingImageUrl))
+# images = (json.dumps(wholejson['images'], indent=2)).splitlines()
+# listOfClasses = list()
+# for line in images:
+#     if "\"class\":" in line:
+#         line = line.replace(",", "")
+#         line = line.replace("\"class\": \"", "")
+#         line = line.replace("\"", "")
+#         line = line.strip()
+#         listOfClasses.append(line)
+#
+# maxVal=0
+# appearedIn = list()
+# highest = ""
+# for classs in listOfClasses:
+#     if classs in objectOccur:
+#         if objectSent[classs] > maxVal:
+#             maxVal = objectSent[classs]
+#             highest = classs
+#
+# appearedIn = objectIDs[highest]
+#
+# maxVal = 0
+# highest = ""
+# for key in appearedIn:
+#     if sentimentComments[key] > maxVal:
+#         maxVal = sentimentComments[key]
+#         highest = key
+#
+# for key in imageObjects[highest]:
+#     print("You should add " + key)
