@@ -13,6 +13,7 @@ name = "pypi"
 
 praw = "*"
 indicoio = "*"
+watson-developer-cloud = "==0.26.1"
 
 
 [requires]
