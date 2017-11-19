@@ -17,6 +17,7 @@ watson-developer-cloud = "==0.26.1"
 plotly = "*"
 matplotlib = "*"
 numpy = "*"
+regex = "*"
 
 
 [requires]
